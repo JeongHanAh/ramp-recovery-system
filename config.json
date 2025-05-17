@@ -1,0 +1,21 @@
+{
+    "data_dir": "data",
+    "raw_data_dir": "data/raw",
+    "refined_data_dir": "data/refined",
+    "results_dir": "data/results",
+    "from_crs": "EPSG:4326",
+    "to_crs": "EPSG:32652",
+    "refiner_config": {
+        "outlier_std_threshold": 3.0,
+        "smoothing_window": 21,
+        "smoothing_order": 3,
+        "min_point_distance": 0.1,
+        "max_point_distance": 5.0
+    },
+    "ramp_extractor_config": {
+        "curvature_threshold": 0.015,
+        "slope_threshold": 0.03,
+        "window_size": 20,
+        "min_segment_length": 50.0
+    }
+} 

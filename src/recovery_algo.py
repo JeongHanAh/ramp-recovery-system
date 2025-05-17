@@ -1,10 +1,6 @@
 # 보정 벡터 계산 및 위치 업데이트
 import numpy as np
 from typing import Callable
-import sys
-import os
-
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'src'))
 
 from spline_curve import compute_derivative
 from delta_vector import compute_error_vector

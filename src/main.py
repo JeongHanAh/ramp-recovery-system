@@ -3,8 +3,11 @@ import numpy as np
 import sys
 import os
 
-# 현재 파일 기준으로 src 디렉토리 경로를 sys.path에 추가
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'src'))
+# 프로젝트 루트 디렉토리를 절대 경로로 추가
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+src_path = os.path.join(project_root, 'src')
+sys.path.insert(0, project_root)
+sys.path.insert(0, src_path)
 
 from spline_curve import fit_spline
 from recovery_algo import recovery_step
