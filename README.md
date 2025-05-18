@@ -1,29 +1,100 @@
-# 고속도로 램프 복구 시스템 (Highway Ramp Recovery System)
+# Highway Ramp Path Recovery System
 
-이 프로젝트는 고속도로 램프 주행 시 실시간 경로 복구 알고리즘을 구현합니다. 고등학교 수준의 미적분학과 기하학을 활용하여 차량의 이상적인 주행 경로를 계산하고 복구합니다.
+## Project Overview
+This system is designed to correct distortions in highway ramp trajectories using a sophisticated path recovery algorithm. It implements a B-spline based curve modeling approach combined with real-time correction vectors to ensure smooth and accurate path recovery.
 
-## 주요 기능
+## Key Features
+- B-spline curve modeling for reference path generation
+- Real-time path correction using tangential and error vectors
+- Curvature-based ramp section identification
+- Visualization of path correction process with animations
+- GPS/IMU sensor data integration capability
 
-- B-스플라인 모델링을 사용한 램프 곡선 생성
-- GPS/IMU 실시간 위치 데이터와 이상적인 매개변수 곡선 비교
-- 접선 방향과 오차 방향을 고려한 보정 벡터 계산
-- 반복적인 경로 복구 알고리즘
+## Project Structure
+```
+ramp-recovery-system/
+├── src/
+│   ├── data_processing/
+│   │   ├── ramp_data_processor.py  # Ramp data processing and curve extraction
+│   │   └── sensor_data.py          # GPS/IMU sensor data processing
+│   ├── curve_modeling/
+│   │   └── spline_curve.py         # B-spline curve fitting and derivatives
+│   ├── path_recovery/
+│   │   └── recovery_algo.py        # Path correction algorithm
+│   └── visualization/
+│       └── ramp_visualizer.py      # Data visualization and animation
+├── data/
+│   └── raw/
+│       └── reference_paths/        # Reference path data storage
+└── results/                        # Output visualization storage
+```
 
-## 설치 방법
+## Technical Details
 
-1. Python 3.8 이상 설치
-2. 의존성 패키지 설치:
+### Core Components
+
+1. **Ramp Data Processor (`ramp_data_processor.py`)**
+   - Extracts ramp sections using curvature analysis
+   - Applies Savitzky-Golay filtering for noise reduction
+   - Handles coordinate transformations
+
+2. **Path Recovery Algorithm (`recovery_algo.py`)**
+   - Implements correction vector calculation
+   - Combines tangential and error vectors
+   - Updates position using adaptive step sizes
+
+3. **B-spline Modeling (`spline_curve.py`)**
+   - Fits B-spline curves to reference paths
+   - Computes curve derivatives for tangent vectors
+   - Provides smooth path interpolation
+
+4. **Visualization System (`ramp_visualizer.py`)**
+   - Real-time visualization of path correction
+   - Animated correction process
+   - Comparison between original and corrected paths
+
+## Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/ramp-recovery-system.git
+cd ramp-recovery-system
+```
+
+2. Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-## 프로젝트 구조
+## Usage
 
-- `src/`: 소스 코드
-  - `curve_modeling/`: B-스플라인 곡선 모델링
-  - `path_recovery/`: 경로 복구 알고리즘
-  - `data_processing/`: GPS/IMU 데이터 처리
-- `data/`: 테스트 및 실제 주행 데이터
-- `notebooks/`: 알고리즘 개발 및 시각화를 위한 Jupyter 노트북
-- `tests/`: 단위 테스트
-- `results/`: 실험 결과 및 시각화
+1. Prepare your reference path data in JSON format:
+```json
+{
+    "coordinates": {
+        "x": [...],
+        "y": [...]
+    }
+}
+```
+
+2. Run the main program:
+```bash
+python src/main.py
+```
+
+3. Check the results in the `results/` directory:
+   - `ramp_analysis.png`: Static visualization
+   - `correction_animation.gif`: Animation of the correction process
+
+## Dependencies
+- numpy
+- scipy
+- matplotlib
+- pyproj (for GPS coordinate transformations)
+
+## Contributing
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+This project is licensed under the MIT License - see the LICENSE file for details.
