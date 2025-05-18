@@ -1,4 +1,3 @@
-from .sensor_data import SensorDataProcessor
-from .road_geometry import RampExtractor
+from .ramp_data_processor import RampDataProcessor
 
-__all__ = ['SensorDataProcessor', 'RampExtractor'] 
+__all__ = ['RampDataProcessor'] 
